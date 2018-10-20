@@ -26,3 +26,7 @@ Ranks:
 - 300 wins = Diamond;
 - 400 wins = master;
 - 500 wins = grandmaster.
+
+TODO list:
+* Private messages in a separate tab TabControl (in the lobby);
+* View statistics (profile) of the player in a separate window.
