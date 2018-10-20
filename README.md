@@ -35,4 +35,5 @@ Ranks:
 * View statistics (profile) of the player in a separate window;
 * Play white against AI;
 * Ability to choose the difficulty of AI;
-* Notify if opponent leaves the game.
+* Notify if opponent leaves the game;
+* Redo database.
