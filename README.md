@@ -27,7 +27,7 @@ Ranks:
 - 400 wins = master;
 - 500 wins = grandmaster.
 
-TODO list:
+### TODO list:
 * Private messages in a separate tab TabControl (in the lobby);
 * View statistics (profile) of the player in a separate window;
 * Play white against AI;
