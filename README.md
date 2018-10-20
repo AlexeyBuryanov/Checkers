@@ -8,6 +8,7 @@ The application is a classic game of checkers. The game has 2 modes: PvP (networ
 - WPF vector graphics;
 - WPF Material Design;
 - WCF;
+- LINQ to SQL;
 - MS SQL DB;
 - MVVM;
 - IoC;
