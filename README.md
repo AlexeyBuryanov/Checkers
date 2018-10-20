@@ -12,6 +12,7 @@ The application is a classic game of checkers. The game has 2 modes: PvP (networ
 - MVVM;
 - IoC;
 - Autofac;
+- Data Binding;
 - Game lobby with chat;
 - Client/Server model;
 - Autoscale game board.
