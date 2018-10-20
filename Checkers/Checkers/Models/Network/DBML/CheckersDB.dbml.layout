@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CheckersDB">
+  <DataContextMoniker Name="/CheckersDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="d78b6f9f-5778-4d26-859e-f05eb1ddaf05" absoluteBounds="4.25, 1.25, 2, 1.7708968098958333">
+      <DataClassMoniker Name="/CheckersDBDataContext/GameHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd4a6608-d7f1-4393-bc3d-59725391dc19" absoluteBounds="4.2650000000000006, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b4c752b8-a2b1-4785-b59f-f76a71ef41e4" absoluteBounds="0.75, 1.25, 2, 1.1939925130208338">
+      <DataClassMoniker Name="/CheckersDBDataContext/GameResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ed966d7-2f7d-4bb6-9778-911d00988e01" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (4.25 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CheckersDBDataContext/GameResult/GameResult_GameHistory" />
+      <nodes>
+        <classShapeMoniker Id="b4c752b8-a2b1-4785-b59f-f76a71ef41e4" />
+        <classShapeMoniker Id="d78b6f9f-5778-4d26-859e-f05eb1ddaf05" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="72975ae8-df34-46a6-90bf-e2edc473356c" absoluteBounds="4.25, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CheckersDBDataContext/Clients" />
+      <nestedChildShapes>
+        <elementListCompartment Id="12358272-6606-477c-b3e2-59c62702170e" absoluteBounds="4.265, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

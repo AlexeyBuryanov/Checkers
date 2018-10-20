@@ -1,0 +1,127 @@
+﻿<metro:MetroWindow 
+    x:Class="Checkers.Views.AboutNetGameView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    
+    Title="Об игре" 
+    Height="250" Width="400"
+    WindowStartupLocation="CenterOwner"
+    GlowBrush="{DynamicResource AccentColorBrush}"
+    Icon="/Checkers;component\Icons\favicon.ico"
+    BorderThickness="1" 
+    ResizeMode="NoResize"
+    ShowTitleBar="False"
+    ShowCloseButton="False"
+    ShowInTaskbar="False"
+    ShowSystemMenuOnRightClick="False"
+    ShowIconOnTitleBar="False"
+    FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="14" 
+    Cursor="IBeam"
+    Background="{StaticResource MaterialDesignLightBackground}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0"
+            Text="Шашки" 
+            FontWeight="Bold" 
+            FontStyle="Italic"
+            FontSize="50" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" 
+            Margin="8 8 0 0" 
+            Foreground="Black"
+        />
+        <TextBlock 
+            Grid.Row="0"
+            Text="классические" 
+            FontWeight="Normal" 
+            FontStyle="Italic"
+            FontSize="16" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" 
+            Margin="70 55 0 0" 
+            Foreground="Black"
+        />
+        <StackPanel
+            Grid.Row="0"
+            Margin="0 70 0 0">
+            <Separator 
+                Height="1"
+                Background="{DynamicResource AccentColorBrush}"
+                Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" 
+            />
+        </StackPanel>
+        <Image
+            Grid.Row="0"
+            Height="49"
+            Width="49"
+            Source="/Checkers;component\Images\Figures\checkerBlack.png" Margin="272,15,72,36"
+        />
+        <Image
+            Grid.Row="0"
+            Height="49"
+            Width="49"
+            Source="/Checkers;component\Images\Figures\checkerWhite.png" Margin="325,15,17,35"
+        />
+        <Image
+            Grid.Row="0"
+            Height="50"
+            Width="50"
+            Source="/Checkers;component\Images\Figures\checkerBlackKing.png" Margin="248,16,94,34"
+        />
+        <Image
+            Grid.Row="0"
+            Height="50"
+            Width="50"
+            Source="/Checkers;component\Images\Figures\checkerWhiteKing.png" Margin="303,15,39,35"
+        />
+        <StackPanel
+            Grid.Row="1"
+            Margin="8 0">
+            <!--<TextBlock
+                Text="{Binding Path=ProductName}"
+                Foreground="{DynamicResource AccentSelectedColorBrush}"
+            />-->
+            <TextBlock
+                Margin="0 20 0 0"
+                Text="{Binding Path=Description}"
+                Foreground="Black"
+            />
+            <WrapPanel
+                Margin="0 10 0 0">
+                <TextBlock
+                    Text="Версия: "
+                    Foreground="Black"
+                />
+                <TextBlock
+                    Text="{Binding Path=Version}"
+                    Foreground="Black"
+                />
+            </WrapPanel>
+            <StackPanel
+                Margin="0 10 0 0">
+                <TextBlock
+                    Text="{Binding Path=Copyright}"
+                    Foreground="Black"
+                />
+                <TextBlock
+                    Text="{Binding Path=CompanyName}"
+                    Foreground="Black"
+                />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</metro:MetroWindow>

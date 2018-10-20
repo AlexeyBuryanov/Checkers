@@ -1,0 +1,600 @@
+﻿<metro:MetroWindow
+    x:Class="Checkers.Views.GameWithAiView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    
+    Title="Шашки - игра с компьютером"
+    Width="800" MinWidth="800" Height="600" MinHeight="600"
+    WindowStartupLocation="CenterScreen"
+    TitleAlignment="Center"
+    GlowBrush="{DynamicResource AccentColorBrush}"
+    Icon="/Checkers;component\Icons\favicon.ico"
+    BorderThickness="1" 
+    ResizeMode="CanResizeWithGrip"
+    ShowTitleBar="True"
+    ShowCloseButton="True"
+    ShowIconOnTitleBar="True"
+    FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="14"
+    Tag="GameWithAi">
+
+    <metro:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </metro:MetroWindow.Resources>
+
+    <metro:MetroWindow.InputBindings>
+        <KeyBinding 
+            Key="E" 
+            Modifiers="Alt" 
+            Command="{Binding ExitCommand}"
+        />
+        <KeyBinding 
+            Key="N" 
+            Modifiers="Control" 
+            Command="{Binding NewGameCommand}"
+        />
+        <KeyBinding 
+            Key="F1" 
+            Modifiers="Control" 
+            Command="{Binding AboutCommand}"
+        />
+    </metro:MetroWindow.InputBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Menu 
+            x:Name="MenuMain" 
+            Grid.Row="0">
+            <MenuItem 
+                Header="_Игра">
+                <MenuItem 
+                    x:Name="MenuItemNewGame"
+                    IsEnabled="False"
+                    Header="_Новая игра" 
+                    Command="{Binding NewGameCommand}"
+                    InputGestureText="Ctrl+N">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="NewBox"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem 
+                    Header="Выход в _меню" 
+                    Command="{Binding ExitToMenuCommand}"
+                    InputGestureText="Alt+F4">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ExitToApp"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem 
+                    Header="В_ыход из игры" 
+                    Command="{Binding ExitCommand}"
+                    InputGestureText="Alt+E">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem 
+                Header="_Вид"
+                x:Name="MenuItemView"
+                IsEnabled="False">
+                <CheckBox
+                    x:Name="CheckBoxInfoPanel"
+                    IsEnabled="True"
+                    Content="Информационная панель"
+                    Command="{Binding InfoPanelCommand}"
+                    IsChecked="{Binding Path=IsCheckInfoPanel}"
+                />
+            </MenuItem>
+            <MenuItem 
+                Header="_Справка">
+                <MenuItem 
+                    Header="_Об игре..." 
+                    Command="{Binding AboutCommand}"
+                    InputGestureText="Ctrl+F1">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Help"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid
+            x:Name="GridMain"
+            Grid.Row="1"
+            Margin="3">
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <Viewbox>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid
+                            Margin="0 0 10 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="8"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="7"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="6"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="5"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="4"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="3"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="2"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="1"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                        </Grid>
+                        <Grid
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="0"
+                                Text="A"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="0"
+                                Text="B"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="2"
+                                Margin="0"
+                                Text="C"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="3"
+                                Margin="0"
+                                Text="D"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="4"
+                                Margin="0"
+                                Text="E"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="5"
+                                Margin="0"
+                                Text="F"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="6"
+                                Margin="0"
+                                Text="G"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                            <TextBlock
+                                Grid.Column="7"
+                                Margin="0"
+                                Text="H"
+                                FontSize="80"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                            />
+                        </Grid>
+                        <!--Игровое поле-->
+                        <Grid
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            x:Name="CheckersGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </Grid>
+                </Viewbox>
+                <!--Информационная панель-->
+                <StackPanel
+                    x:Name="StackPanelInfoPanel"
+                    Margin="20 0 0 0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding Path=InfoPanelVisibility}">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 10 0 0">
+                        <TextBlock
+                            Text="Времени прошло: "
+                        />
+                        <TextBlock
+                            x:Name="TextBlockTimePassed"
+                            Text="{Binding Path=TimePassed}"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 20 0 0">
+                        <Image
+                            Source="/Checkers;component\Images\bulletBlack.png"
+                            Height="40"
+                            Margin="0 0 8 0"
+                        />
+                        <TextBlock
+                            Text="Игрок"
+                            FontWeight="Medium"
+                            TextAlignment="Center"
+                            VerticalAlignment="Center"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 8 0 0">
+                        <TextBlock
+                            Text="Осталось            : "
+                        />
+                        <TextBlock
+                            x:Name="ScoreBlacksLeft"
+                            Text="{Binding Path=ScoreBlacks.Left}"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 8 0 0">
+                        <TextBlock
+                            Text="Взятые шашки  : "
+                        />
+                        <TextBlock
+                            x:Name="ScoreBlacksTaked"
+                            Text="{Binding Path=ScoreBlacks.Taked}"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 20 0 0">
+                        <Image
+                            Source="/Checkers;component\Images\bulletWhite.png"
+                            Height="40"
+                            Margin="0 0 8 0"
+                        />
+                        <TextBlock
+                            Text="Компьютер"
+                            FontWeight="Medium"
+                            TextAlignment="Center"
+                            VerticalAlignment="Center"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 8 0 0">
+                        <TextBlock
+                            Text="Осталось            : "
+                        />
+                        <TextBlock
+                            x:Name="ScoreWhitesLeft"
+                            Text="{Binding Path=ScoreWhites.Left}"
+                        />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0 8 0 0">
+                        <TextBlock
+                            Text="Взятые шашки  : "
+                        />
+                        <TextBlock
+                            x:Name="ScoreWhitesTaked"
+                            Text="{Binding Path=ScoreWhites.Taked}"
+                        />
+                    </StackPanel>
+                    <!--
+                        Возможность сделать DataGrid динамической длины:
+                        Height="{Binding Path=ActualHeight, ElementName=StackPanelInfoPanel}"
+                        Но при этом жертвуем производительностью. Естественно, меня это не устраивает.
+                    -->
+                    <DataGrid 
+                        x:Name="DataGridHistoryMove"
+                        ItemsSource="{Binding Path=HistoryMove}"
+                        Margin="0 20 0 0"
+                        Height="210"
+                        Width="270"
+                        CanUserReorderColumns="True" 
+                        CanUserResizeColumns="True" 
+                        CanUserResizeRows="True"
+                        AutoGenerateColumns="False" 
+                        GridLinesVisibility="All" 
+                        SelectionUnit="FullRow" 
+                        SelectionMode="Single" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                        CanUserAddRows="False" 
+                        CanUserDeleteRows="False"
+                        IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Number}" Header="№" Width="45" />
+                            <DataGridTextColumn Binding="{Binding Time}" Header="Время" Width="100" />
+                            <DataGridTextColumn Binding="{Binding Move}" Header="Ход" Width="100" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <StatusBar
+            x:Name="StatusBarMain" 
+            Grid.Row="2">
+            <StatusBarItem
+                Margin="5 0 0 0"
+                VerticalAlignment="Center">
+                <TextBlock 
+                    x:Name="StatusText"
+                    Text="{Binding Path=StatusText}" 
+                />
+            </StatusBarItem>
+        </StatusBar>
+
+        <materialDesign:Snackbar
+            Grid.Row="1"
+            x:Name="Snackbar" 
+            MessageQueue="{materialDesign:MessageQueue}" 
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+        />
+
+        <materialDesign:DialogHost
+            x:Name="DialogHostWinner"
+            Grid.Row="1"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="16">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        x:Name="TextBlockWinner"
+                        Text="? - победитель."
+                    />
+                    <TextBlock
+                        Text="Хотите сыграть ещё раз?"
+                    />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                        <Button 
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 16 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                            ДА
+                        </Button>
+                        <Button 
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                            НЕТ
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+        <materialDesign:DialogHost
+            x:Name="DialogHostPick"
+            Grid.Row="1"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="16">
+                    <TextBlock
+                        HorizontalAlignment="Right"
+                        Text="Выберите за кого хотите играть"
+                    />
+                    <TextBlock
+                        FontSize="10"
+                        HorizontalAlignment="Right"
+                        Text="В разработке..."
+                    />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                        <Button 
+                            Height="80"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 16 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                            <Image
+                                Height="50"
+                                Source="/Checkers;component\Images\Figures\checkerBlack.png"
+                            />
+                        </Button>
+                        <Button 
+                            Height="80"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsCancel="True"
+                            Margin="0 8 8 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand"
+                            IsEnabled="False">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                            <Image
+                                Height="50"
+                                Source="/Checkers;component\Images\Figures\checkerWhite.png"
+                            />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+</metro:MetroWindow>
