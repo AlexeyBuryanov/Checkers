@@ -2,7 +2,7 @@
 [license-url]: LICENSE
 
 # Checkers [![license][license-image]][license-url]
-The application is a classic game of checkers. The game has 2 modes: PvP (network game) and against the computer.
+The application is a classic game of checkers. The game has 2 modes: PvP (network game) and against the AI.
 
 - WPF;
 - WPF vector graphics;
