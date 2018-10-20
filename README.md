@@ -33,4 +33,5 @@ Ranks:
 * Private messages in a separate tab TabControl (in the lobby);
 * View statistics (profile) of the player in a separate window;
 * Play white against AI;
-* Ability to choose the difficulty of AI.
+* Ability to choose the difficulty of AI;
+* Notify if opponent leaves the game.
