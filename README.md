@@ -26,8 +26,8 @@ Ranks:
 - 10  wins = bronze;
 - 50  wins = silver;
 - 100 wins = gold;
-- 200 wins = Platinum;
-- 300 wins = Diamond;
+- 200 wins = platinum;
+- 300 wins = diamond;
 - 400 wins = master;
 - 500 wins = grandmaster.
 
