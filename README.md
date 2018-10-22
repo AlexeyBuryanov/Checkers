@@ -37,4 +37,4 @@ Ranks:
 * Play white against AI;
 * Ability to choose the difficulty of AI;
 * Notify if opponent leaves the game;
-* Redo database.
+* Rework database.
